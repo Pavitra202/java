@@ -1,0 +1,44 @@
+package com.company;
+import java.util.*;
+public class student
+
+        {
+            String name;
+            String clg ;
+            String branch ;
+            String address;
+
+
+            student(String s1,String s2,String s3,String s4)
+            {
+                name=s1;
+                clg=s2;
+                branch=s3;
+                address=s4;
+            }
+
+
+
+            public static void main(String args[])
+            {
+                HashMap<Integer, student> hm=new HashMap<Integer, student>();
+
+                student x1=new student("Name=Rakshita\n","clg=RNSIT\n","branch=CSE\n","address=mysore");
+                student x2=new student("Name=Anu\n","clg=BIT\n","branch=EEE\n","address=banglr\n");
+                student x3=new student("Name=Rupal\n","clg=GLOBAL\n","branch=ECE\n","address=bhatkal\n");
+                student x4=new student("Name=Rita\n","clg=DBIT\n","branch=ISE\n","address=manglr\n");
+                student x5=new student("Name=Payal\n","clg=SJBIT\n","branch=ISE\n","address=udupi\n");
+                hm.put(1,x1);
+                hm.put(2,x2);
+                hm.put(3,x3);
+                hm.put(4,x4);
+                hm.put(5,x5);
+                Iterator trav=hm.entrySet().iterator();
+                while(trav.hasNext())
+                {
+                    Map.Entry record=(Map.Entry)trav.next();  
+                    student j=(student)record.getValue();
+                    System.out.println(record.getKey()+" "+j.name+" "+j.clg+" "+j.branch+" "+j.address);
+                }
+            }
+        }
