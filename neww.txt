@@ -1,0 +1,128 @@
+Message List
+Profile picture of Mythili.import java.sql.Connection ; import java... by Mythili
+Mythili (External)
+Yesterday 15:32
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class JdbcConnection {
+    public static void main(String[] args){
+        try {
+            String addr="jdbc:mysql://localhost:3306/jdbc_demo";
+            String username="root";
+            String password="root";
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con= DriverManager.getConnection(addr,username,password);
+            System.out.println("connection is established");
+        }
+        catch (ClassNotFoundException e){
+
+        }
+        catch (SQLException e){
+
+        }
+
+    }
+
+}
+
+Profile picture of Mythili.import java.sql. *; import java.util.Sca... by Mythili
+Mythili (External)
+Yesterday 17:04
+import java.sql.*;
+import java.util.Scanner;
+
+public class JdbcConnection {
+    public static void main(String[] args) throws SQLException {
+        Connection con=null;
+        Statement stm;
+        try {
+            String addr="jdbc:mysql://localhost:3306/demo";
+            String username="root";
+            String password="vtiger";
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con= DriverManager.getConnection(addr,username,password);
+
+            Scanner sc=new Scanner(System.in);
+            String pri_name=sc.next();
+            String current_name=sc.next();
+            String sql1="update student set name=? where name=?";
+            PreparedStatement pstm=con.prepareStatement(sql1);
+            pstm.setString(1,pri_name);
+            pstm.setString(2,current_name);
+
+            int status= pstm.executeUpdate();
+            if(status==0){
+                System.out.println("enter the name which is present in table");
+            }
+            /*stm= con.createStatement();
+            String sql="delete from student where usn='4mn'";
+            String sql1="update student set name='hemanth' where name='rakesh'";
+            int status=stm.executeUpdate(sql1);*/
+            System.out.println(status);
+
+
+
+            System.out.println("updated");
+        }
+        catch (ClassNotFoundException e){
+
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
+class ContactManagerTest {
+    private static ContactManager contactManager;
+    @BeforeAll
+    public static void setupAll(){
+        System.out.println("Should Print Before All Tests");
+    }
+    @BeforeEach
+    public void setup(){
+        System.out.println("Instantiating Contact Manager");
+        contactManager = new ContactManager();
+    }
+
+
+    @Test
+    @DisplayName("Should Create Contact")
+    public void shouldCreateContact(){
+        contactManager.addContact("hemanth","km","0123456789");
+        Assertions.assertFalse(contactManager.getAllContacts().isEmpty());
+        Assertions.assertEquals(1,contactManager.getAllContacts().size());
+    }
+
+    @Test
+    @DisplayName("Should Not create Contact When First name is Null")
+    public void shouldThrowErrorWhenFirstNameIsNull(){
+        Assertions.assertThrows(RuntimeException.class, ()->{
+            contactManager.addContact(null,"km","0123456789");
+        });
+    }
+    @Test
+    @DisplayName("Should Not create Contact When Last name is Null")
+    public void shouldThrowErrorWhenLastNameIsNull(){
+        Assertions.assertThrows(RuntimeException.class, ()->{
+            contactManager.addContact("hemanth",null,"0123456789");
+        });
+    }
+    @Test
+    @DisplayName("Should Not create Contact When Phone Number is Null")
+    public void shouldThrowErrorWhenPhoneNumberIsNull(){
+        Assertions.assertThrows(RuntimeException.class, ()->{
+            contactManager.addContact("hemanth","k m",null);
+        });
+    }
+    @AfterEach
+    public void finish(){
+        System.out.println("Should Execute after Each Test");
+    }
+
+    @AfterAll
+    public static void finishAll(){
+        System.out.println("Should execute at the End of the Test");
+    }
+
+
+}
+
+
